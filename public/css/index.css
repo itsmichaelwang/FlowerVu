@@ -1,0 +1,132 @@
+body {
+	background-color: #d3c7e9;
+} 
+
+#title {
+	font-size: 2em;
+	position: absolute;
+	bottom: 0;
+}
+
+#clock {
+	font-size: 1em;
+}
+
+/* Button formatting */
+.btn {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#balance-btn {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: right;
+}
+
+/* Control the label ABOVE the timeline bars (i.e "Equivalency Meal Value") */
+#rate-bars-label {
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+	font-size: 1em;
+	font-weight: bold;
+}
+
+/* Control the well AROUND the timeline bars */
+#timeline-well {
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+/* Format the timeline bars themselves */
+.rate-bars {
+	height: 20px;
+	float: left;
+}
+
+/* Set each bar's color individually; change CSS if you change the # of time blocks */
+/* LIGHT GREEN */
+#block0 {
+	background-color: #40d351;
+}
+
+/* MEDIUM GREEN */
+#block1 {
+	background-color: #2e973a;
+}
+
+/* DARK GREEN */
+#block2 {
+	background-color: #216C2A;
+}
+
+/* MEDIUM GREEN */
+#block3 {
+	background-color: #2e973a;
+}
+
+/* Control the font WITHIN the timeline bars */
+.time-text {
+	margin-top: -1.5em;	/* Shift the time text ABOVE the bars */
+	margin-left: 5px;	/* Some space makes it look better */
+
+	font-size: 0.75em;
+	font-weight: bold;
+}
+
+.time-text-closing {
+	margin-top: -3.2em;
+	float: right;
+
+	font-size: 0.75em;
+	font-weight: bold;
+}
+
+/* Not the prettiest... set width and translate '4:45 PM' to make it fit better */
+#time-text2 {
+	width: 50px;
+
+	-ms-transform: translate(-10px, 0px);		/* IE 9 */
+	-webkit-transform: translate(-10px, 0px);	/* Chrome, Safari, Opera */
+	transform: translate(-10px, 0px);
+}
+
+.price-text {
+	margin-left: 5px;
+
+	color: white;
+	font-size: 1em;
+}
+
+/* Format "Menu" and "Schedule" so it shifts right */
+.menu {
+	font-weight: normal;
+
+	color: #0000FF;
+	float: right;
+}
+
+/* Formatting concerning the panel content - .open and .closed are inner so padding is cut */
+.open {
+	float: left;
+	padding-right: 4px;
+	padding-bottom: 0px;
+
+	color: green;
+}
+
+.closed {
+	float: left;
+	padding-right: 4px;
+	padding-bottom: 0px;
+
+	color: red;
+}
+
+/* Footer formatting*/
+#footer {
+	margin-top: -10px;
+	margin-bottom: 10px;
+	font-style: italic;
+}

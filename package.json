@@ -1,0 +1,14 @@
+{
+  "name": "FlowerShop",
+  "version": "0.0.0",
+  "description": "Floral store web front-end",
+  "main": "server.js",
+  "author": "Michael Wang",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "ejs": "~0.8.5",
+    "express": "~4.7.2",
+    "method-override": "~2.1.2",
+    "morgan": "~1.2.2"
+  }
+}

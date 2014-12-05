@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- Render the page in the highest supported version of IE -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Combine with Bootstrap to create responsive content -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>FlowerVu</title>
+        <!-- Bootstrap core CSS (Note: using a custom theme!) -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js" defer></script>
+        <!-- Custom Angular -->
+        <script src="js/controllers/mainCtrl.js" defer></script>
+    </head>
+
+    <body ng-app='flowerShop' ng-controller="mainCtrl">
+
+        <!-- Navigation Bar -->
+        <div class="navbar navbar-default navnavbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+
+                    <!-- Title of Website Goes Here -->
+                    <a id="title" class="navbar-brand">FlowerVu</a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Flower Panels -->
+        <div class="container">
+            <div ng-repeat='flower in flowersList' class="panel-group" id="accordion">
+                Flower Type: {{flower.flower}}</br>
+                Date: {{flower.date | date: 'MMMMM d, yyyy'}}</br>
+                Quantity Sold: {{flower.quantity-sold}}</br>
+                Quantity Unsold: {{flower.quantity-unsold}}</br>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="container">This web page is 100% gluten free.</div>
+        
+    </body>
+</html>

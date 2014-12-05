@@ -3,20 +3,37 @@
 var app = angular.module('flowerShop', []);
 
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
-	var currentDate = moment.format("2/3/2012",'MM/DD/YYYY');
-	console.log(currentDate);
-
-	$scope.test = 'Hello world!';
-	$scope.flowersList = null;
+	
+	var salesData = null;
+	var currentDate = new Date(2012, 2, 3);
+	$scope.todaySales = null;
 
 	$http.get('resources/flowers.json')
 		.success(function (data) {
-			console.log("Great success!");
-			$scope.flowersList = data;
+			salesData = data;
+			console.log(data);
+
+			$scope.todaySales = getTodaySales(salesData, currentDate);
+			console.log($scope.todaySales);
+
 		})
-		.error(function (data, status, headesr, config) {
-			console.log("No bueno");
+		.error(function (data, status, headers, config) {
+			// Exception handling
 		});
 
+	getTodaySales = function(salesData, currentDate) {
+		todaySales = [];
+		for (var day in salesData) {
+			var date = Date.parse(day.date);
+			console.log(date);
+			console.log(currentDate);
+			if (date == currentDate) {
+				todaySales.push(day);
+			}
+		}
+
+		return todaySales;
+	}
+		
 
 }]);

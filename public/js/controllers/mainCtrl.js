@@ -1,6 +1,6 @@
 // js/controllers/mainCtrl.js
 // Main Controller - Functionality is here
-var app = angular.module('flowerVu', ['angularMoment']);
+var app = angular.module('flowerVu', ['angularMoment', 'tc.chartjs']);
 
 app.filter('capitalize', function() {
 	return function(input, scope) {
@@ -13,32 +13,72 @@ app.filter('capitalize', function() {
 
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 	
-	$scope.salesData = null;
-	$scope.currentDate = moment("2/3/2012", "MM/DD/YYYY")
-	$scope.todaySales = null;
+	$scope.salesData = [];
+
+	$scope.myData = {};
+	$scope.myOptions = {
+		// Keep it phresh
+	}
 
 	$http.get('resources/flowers.json')
 		.success(function (data) {
 			$scope.salesData = data;
 			console.log(data);
+
+			setChartData(data)
 		})
 		.error(function (data, status, headers, config) {
 			// Exception handling
 		});
 
-	// Return all sales data that matches current date
-	getTodaySales = function(salesData, currentDate) {
-		todaySales = [];
-		for (var i in salesData) {
-			var date = moment(salesData[i].date, "MM/DD/YYYY");
+	setChartData = function(data) {
+		var salesByFlower = {};
+		var dateArray = [];
 
-			if (date.isSame(currentDate)) {
-				todaySales.push(salesData[i]);
+		for (var i in data) {
+			// covert json object into dictionary
+			value = data[i];
+			key = value.flower;
+
+			if (key in salesByFlower) {
+				salesByFlower[key].push(value);
+			} else {
+				salesByFlower[key] = new Array();
+				salesByFlower[key].push(value);
+			}
+
+			// create array that matches dates to graph position
+			date = value.date;
+			if (dateArray.indexOf(date) == -1) {
+				dateArray.push(date);
 			}
 		}
 
-		return todaySales;
-	}
-		
+		// cycle through dictionary and create chart dataset
+		$scope.myData.labels = dateArray;
+		$scope.myData.datasets = [];
 
+		for (var flower in salesByFlower) {
+			if (salesByFlower.hasOwnProperty(flower)) {
+
+				var flowerDataSet = {
+					label: flower,
+					fillColor: "rgba(220,220,220,0.2)",
+            		strokeColor: "rgba(220,220,220,1)",
+            		pointColor: "rgba(220,220,220,1)",
+            		pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: []
+				}
+
+				flowerArray = salesByFlower[flower];
+				for (var i in flowerArray) {
+					flowerDataSet.data.push(flowerArray[i]['quantity-sold']);
+				}
+
+				$scope.myData.datasets.push(flowerDataSet);
+			}
+		}
+	}
 }]);

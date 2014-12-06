@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <!-- Render the page in the highest supported version of IE -->
@@ -22,6 +23,10 @@
         <script src="js/angular-moment.min.js"></script>
         <script src="js/moment.min.js"></script>
 
+        <!-- ChartJS -->
+        <script src="js/chart.min.js"></script>
+        <script src="js/tc-angular-chartjs.min.js"></script>
+
     </head>
 
     <body ng-app='flowerVu' ng-controller="mainCtrl">
@@ -36,6 +41,11 @@
 
                 </div>
             </div>
+        </div>
+
+        <!-- Flower Sales Chart -->
+        <div class="container">
+            <canvas chart-data="myData" chart-options="myOptions" tc-chartjs-line width="725% !important" height="auto"></canvas>
         </div>
 
         <!-- Flower Panels -->

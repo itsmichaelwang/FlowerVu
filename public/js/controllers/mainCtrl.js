@@ -1,34 +1,39 @@
 // js/controllers/mainCtrl.js
 // Main Controller - Functionality is here
-var app = angular.module('flowerShop', []);
+var app = angular.module('flowerVu', ['angularMoment']);
+
+app.filter('capitalize', function() {
+	return function(input, scope) {
+		if (input != null) {
+			input = input.toLowerCase();
+		}
+		return input.substring(0,1).toUpperCase() + input.substring(1);
+	}
+});
 
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 	
-	var salesData = null;
-	var currentDate = new Date(2012, 2, 3);
+	$scope.salesData = null;
+	$scope.currentDate = moment("2/3/2012", "MM/DD/YYYY")
 	$scope.todaySales = null;
 
 	$http.get('resources/flowers.json')
 		.success(function (data) {
-			salesData = data;
+			$scope.salesData = data;
 			console.log(data);
-
-			$scope.todaySales = getTodaySales(salesData, currentDate);
-			console.log($scope.todaySales);
-
 		})
 		.error(function (data, status, headers, config) {
 			// Exception handling
 		});
 
+	// Return all sales data that matches current date
 	getTodaySales = function(salesData, currentDate) {
 		todaySales = [];
-		for (var day in salesData) {
-			var date = Date.parse(day.date);
-			console.log(date);
-			console.log(currentDate);
-			if (date == currentDate) {
-				todaySales.push(day);
+		for (var i in salesData) {
+			var date = moment(salesData[i].date, "MM/DD/YYYY");
+
+			if (date.isSame(currentDate)) {
+				todaySales.push(salesData[i]);
 			}
 		}
 

@@ -14,12 +14,17 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
         <!-- AngularJS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
         <!-- Custom Angular -->
-        <script src="js/controllers/mainCtrl.js" defer></script>
+        <script src="js/controllers/mainCtrl.js"></script>
+
+        <!-- Moment -->
+        <script src="js/angular-moment.min.js"></script>
+        <script src="js/moment.min.js"></script>
+
     </head>
 
-    <body ng-app='flowerShop' ng-controller="mainCtrl">
+    <body ng-app='flowerVu' ng-controller="mainCtrl">
 
         <!-- Navigation Bar -->
         <div class="navbar navbar-default navnavbar-static-top">
@@ -34,13 +39,21 @@
         </div>
 
         <!-- Flower Panels -->
-        <div class="container">
-            <div ng-repeat='flower in flowersList' class="panel-group" id="accordion">
-                Flower Type: {{flower.flower}}</br>
-                Date: {{flower.date | date: 'MMMMM d, yyyy'}}</br>
-                Quantity Sold: {{flower.quantity-sold}}</br>
-                Quantity Unsold: {{flower.quantity-unsold}}</br>
-            </div>
+        <div class="container-fluid">
+            <table class="table">
+                <tr class="table-heading">
+                    <td>Date</td>
+                    <td>Product</td>
+                    <td>Qty Sold</td>
+                    <td>Qty Unsold</td>
+                </tr>
+                <tr ng-repeat="sale in salesData | orderBy:['-date', 'flower']">
+                    <td>{{sale.date | date: 'MM/dd/ yyyy'}}</td>
+                    <td>{{sale.flower | capitalize}}</td>
+                    <td>{{sale['quantity-sold']}}</td>
+                    <td>{{sale['quantity-unsold']}}</td>
+                </tr>
+            </table>
         </div>
 
         <!-- Footer -->

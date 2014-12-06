@@ -17,7 +17,8 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 
 	$scope.myData = {};
 	$scope.myOptions = {
-		// Keep it phresh
+		responsive: true,
+		bezierCurve: false
 	}
 
 	$http.get('resources/flowers.json')

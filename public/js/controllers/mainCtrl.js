@@ -32,6 +32,36 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 			// Exception handling
 		});
 
+	// maps colors to ChartJS themes
+	chartColorHash = {
+		rose: {
+			fillColor: "rgba(239,89,123,0)",
+			strokeColor: "rgba(239,89,123,1)",
+			pointColor: "rgba(239,89,123,1)",
+    		pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(239,89,123,1)"
+		},
+
+		tulip: {
+			fillColor: "rgba(220,220,220,0)",
+			strokeColor: "rgba(220,220,220,1)",
+			pointColor: "rgba(220,220,220,1)",
+    		pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)"
+		},
+
+		dandelion: {
+			fillColor: "rgba(225,212,100,0)",
+			strokeColor: "rgba(225,212,100,1)",
+			pointColor: "rgba(225,212,100,1)",
+    		pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(225,212,100,1)"
+		}
+	}
+
 	setChartData = function(data) {
 		var salesByFlower = {};
 		var dateArray = [];
@@ -64,12 +94,12 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 
 				var flowerDataSet = {
 					label: flower,
-					fillColor: "rgba(220,220,220,0.2)",
-            		strokeColor: "rgba(220,220,220,1)",
-            		pointColor: "rgba(220,220,220,1)",
-            		pointStrokeColor: "#fff",
-		            pointHighlightFill: "#fff",
-		            pointHighlightStroke: "rgba(220,220,220,1)",
+					fillColor: chartColorHash[flower].fillColor,
+            		strokeColor: chartColorHash[flower].strokeColor,
+            		pointColor: chartColorHash[flower].pointColor,
+            		pointStrokeColor: chartColorHash[flower].pointStrokeColor,
+		            pointHighlightFill: chartColorHash[flower].pointHighlightFill,
+		            pointHighlightStroke: chartColorHash[flower].pointHighlightStroke,
 		            data: []
 				}
 

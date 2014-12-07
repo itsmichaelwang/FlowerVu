@@ -45,18 +45,23 @@
 
         <!-- Flower Sales Chart -->
         <div class="container">
-            <div class='col-md-6 chart-container'>
+            <div class='col-md-5 chart-container'>
                 <div class='chart'>
-                    <div class='chart-title'>Total Inventories by Date</div>
-                    <canvas chart-data="myDataSales" chart-options="myOptions" tc-chartjs-line></canvas>
-                </div>
-            </div>
-            <div class='col-md-6 chart-container'>
-                <div class='chart'>
-                    <div class='chart-title'>Flower Sales by Date</div>
+                    <div class='chart-title'>Total Quantities by Date</div>
                     <canvas chart-data="myDataInv" chart-options="myOptions" tc-chartjs-line></canvas>
                 </div>
             </div>
+            <div class='col-md-5 chart-container'>
+                <div class='chart'>
+                    <div class='chart-title'>Quantities Sold by Date</div>
+                    <canvas tc-chartjs-line chart-data="myDataSales" chart-options="myOptions" chart-legend='legend'></canvas>
+                    
+                </div>
+            </div>
+            <div class='col-md-2'>
+                <div tc-chartjs-legend chart-legend="legend"></div>
+            </div>
+
         </div>
 
         <br>
@@ -71,7 +76,7 @@
                     <td>Qty Sold</td>
                     <td>Qty Left</td>
                 </tr>
-                <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:['-date', 'flower'])">
+                <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:['-date', '-flower'])">
                     <td>
                         <div ng-hide="sale.date == sortedSalesData[$index-1].date">
                             {{sale.date | date: 'MM/dd/ yyyy'}}

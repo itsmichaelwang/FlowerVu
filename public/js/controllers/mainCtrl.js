@@ -24,8 +24,9 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 		scaleOverride: true,
 		scaleSteps: 5,
 		scaleStepWidth: 20,
-		scaleStartValue: 0
-	}
+		scaleStartValue: 0,
+		legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+   };
 
 	$http.get('resources/flowers.json')
 		.success(function (data) {

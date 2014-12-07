@@ -4,29 +4,19 @@ var app = angular.module('flowerVu', ['angularMoment', 'tc.chartjs']);
 
 app.filter('capitalize', function() {
 	return function(input, scope) {
-		if (input != null) {
+		if (input == null) {
+			return null;
+		} else {
 			input = input.toLowerCase();
+			return input.substring(0,1).toUpperCase() + input.substring(1);
 		}
-		return input.substring(0,1).toUpperCase() + input.substring(1);
 	}
 });
 
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 	
-	$scope.parseInt = parseInt;
+	$scope.parseInt = parseInt;		// pass to html for calculating total qty
 	$scope.salesData = [];
-
-	$scope.myDataSales = {};
-	$scope.myDataInv = {};
-	$scope.myOptions = {
-		responsive: true,
-		bezierCurve: false,
-		scaleOverride: true,
-		scaleSteps: 5,
-		scaleStepWidth: 20,
-		scaleStartValue: 0,
-		legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
-   };
 
 	$http.get('resources/flowers.json')
 		.success(function (data) {
@@ -39,6 +29,19 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 			// Exception handling
 		});
 
+	// ChartJS objects/data
+	$scope.myDataSales = {};
+	$scope.myDataInv = {};
+	$scope.myOptions = {
+		responsive: true,
+		bezierCurve: false,
+		scaleOverride: true,
+		scaleSteps: 5,
+		scaleStepWidth: 20,
+		scaleStartValue: 0,
+		legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+   	};
+   	
 	// maps colors to ChartJS themes
 	chartColorHash = {
 		rose: {

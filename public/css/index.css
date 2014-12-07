@@ -1,41 +1,24 @@
-/*div {
-	border: 1px solid black;
-}*/
-
 #title {
 	font-size: 2em;
-	position: absolute;
-	bottom: 0;
 }
 
 .chart-title {
 	font-size: 1.5em;
-	margin-bottom: 10px;
-	margin-top: -5px;
 	text-align: center;
 }
 
 .chart-container {
-  	margin-bottom: 10px;
-}
-
-.chart {
 	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 10px;
 }
 
 .table-heading {
 	font-weight: bold;
 }
 
-/* Footer formatting*/
-#footer {
-	font-style: italic;
-	margin-top: -5px;
-	margin-bottom: 10px;
-}
-
+/* ChartJS Legend Formatting */
 .tc-chart-js-legend {
   list-style-type: none;
   padding-left: 0px;
@@ -54,4 +37,11 @@
   display: block;
   float: left;
   margin-right: 10px;
+}
+
+/* Footer formatting*/
+#footer {
+	font-style: italic;
+	margin-top: -5px;
+	margin-bottom: 10px;
 }

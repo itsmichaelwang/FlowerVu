@@ -5,10 +5,10 @@
         <meta charset="utf-8">
         <!-- Render the page in the highest supported version of IE -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Combine with Bootstrap to create responsive content -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <title>FlowerVu</title>
+
         <!-- Bootstrap core CSS (Note: using a custom theme!) -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <!-- Custom CSS -->
@@ -19,7 +19,7 @@
         <!-- Custom Angular -->
         <script src="js/controllers/mainCtrl.js"></script>
 
-        <!-- Moment -->
+        <!-- MomentJS -->
         <script src="js/angular-moment.min.js"></script>
         <script src="js/moment.min.js"></script>
 
@@ -32,7 +32,7 @@
     <body ng-app='flowerVu' ng-controller="mainCtrl">
 
         <!-- Navigation Bar -->
-        <div class="navbar navbar-default navnavbar-static-top">
+        <div class="navbar navbar-default">
             <div class="navbar-inner">
                 <div class="container">
 
@@ -45,15 +45,15 @@
 
         <!-- Flower Sales Chart -->
         <div class="container">
-            <div class='col-md-5 chart-container'>
-                <div class='chart'>
-                    <div class='chart-title'>Total Quantities by Date</div>
+            <div class='col-md-5'>
+                <div class='chart-container'>
+                    <div class='chart-title'>Total Quantities</div>
                     <canvas chart-data="myDataInv" chart-options="myOptions" tc-chartjs-line></canvas>
                 </div>
             </div>
-            <div class='col-md-5 chart-container'>
-                <div class='chart'>
-                    <div class='chart-title'>Quantities Sold by Date</div>
+            <div class='col-md-5'>
+                <div class='chart-container'>
+                    <div class='chart-title'>Quantities Sold</div>
                     <canvas tc-chartjs-line chart-data="myDataSales" chart-options="myOptions" chart-legend='legend'></canvas>
                     
                 </div>
@@ -61,9 +61,7 @@
             <div class='col-md-2'>
                 <div tc-chartjs-legend chart-legend="legend"></div>
             </div>
-
         </div>
-
         <br>
 
         <!-- Flower Panels -->
@@ -78,6 +76,7 @@
                 </tr>
                 <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:['-date', '-flower'])">
                     <td>
+                        <!-- Don't display dates duplicately -->
                         <div ng-hide="sale.date == sortedSalesData[$index-1].date">
                             {{sale.date | date: 'MM/dd/ yyyy'}}
                         </div>

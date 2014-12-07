@@ -8,10 +8,6 @@
 	bottom: 0;
 }
 
-.table-container {
-	height: 40vh;
-}
-
 .chart-title {
 	font-size: 1.5em;
 	margin-bottom: 10px;
@@ -23,19 +19,14 @@
   	margin-bottom: 10px;
 }
 
-.data-chart {
-	max-width: 400px;
+.chart {
+	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
-
 }
 
 .table-heading {
 	font-weight: bold;
-}
-
-.pre-scrollable {
-	max-height: 450px;
 }
 
 /* Footer formatting*/

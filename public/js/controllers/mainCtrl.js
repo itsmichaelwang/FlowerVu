@@ -13,6 +13,8 @@ app.filter('capitalize', function() {
 
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 	
+	$scope.parseInt = parseInt;
+
 	$scope.salesData = [];
 
 	$scope.myData = {};

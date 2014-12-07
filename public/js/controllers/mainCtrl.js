@@ -14,13 +14,17 @@ app.filter('capitalize', function() {
 app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 	
 	$scope.parseInt = parseInt;
-
 	$scope.salesData = [];
 
-	$scope.myData = {};
+	$scope.myDataSales = {};
+	$scope.myDataInv = {};
 	$scope.myOptions = {
 		responsive: true,
-		bezierCurve: false
+		bezierCurve: false,
+		scaleOverride: true,
+		scaleSteps: 5,
+		scaleStepWidth: 20,
+		scaleStartValue: 0
 	}
 
 	$http.get('resources/flowers.json')
@@ -88,29 +92,37 @@ app.controller('mainCtrl', ['$scope','$http', function($scope,$http) {
 		}
 
 		// cycle through dictionary and create chart dataset
-		$scope.myData.labels = dateArray;
-		$scope.myData.datasets = [];
+		$scope.myDataSales.labels = dateArray;
+		$scope.myDataSales.datasets = [];
 
-		for (var flower in salesByFlower) {
-			if (salesByFlower.hasOwnProperty(flower)) {
+		$scope.myDataInv.labels = dateArray;
+		$scope.myDataInv.datasets = [];
 
-				var flowerDataSet = {
-					label: flower,
-					fillColor: chartColorHash[flower].fillColor,
-            		strokeColor: chartColorHash[flower].strokeColor,
-            		pointColor: chartColorHash[flower].pointColor,
-            		pointStrokeColor: chartColorHash[flower].pointStrokeColor,
-		            pointHighlightFill: chartColorHash[flower].pointHighlightFill,
-		            pointHighlightStroke: chartColorHash[flower].pointHighlightStroke,
+		// iterating through keys in dictionary
+		for (var key in salesByFlower) {
+			if (salesByFlower.hasOwnProperty(key)) {
+
+				var dataSetSales = {
+					label: key,
+					fillColor: chartColorHash[key].fillColor,
+            		strokeColor: chartColorHash[key].strokeColor,
+            		pointColor: chartColorHash[key].pointColor,
+            		pointStrokeColor: chartColorHash[key].pointStrokeColor,
+		            pointHighlightFill: chartColorHash[key].pointHighlightFill,
+		            pointHighlightStroke: chartColorHash[key].pointHighlightStroke,
 		            data: []
+				};
+				var dataSetInv = JSON.parse(JSON.stringify(dataSetSales));
+
+				flowerSales = salesByFlower[key];
+				for (var i in flowerSales) {
+					dataSetSales.data.push(flowerSales[i]['quantity-sold']);
+					dataSetInv.data.push(parseInt(flowerSales[i]['quantity-sold']) + 
+										   parseInt(flowerSales[i]['quantity-unsold']));
 				}
 
-				flowerArray = salesByFlower[flower];
-				for (var i in flowerArray) {
-					flowerDataSet.data.push(flowerArray[i]['quantity-sold']);
-				}
-
-				$scope.myData.datasets.push(flowerDataSet);
+				$scope.myDataSales.datasets.push(dataSetSales);
+				$scope.myDataInv.datasets.push(dataSetInv)
 			}
 		}
 	}

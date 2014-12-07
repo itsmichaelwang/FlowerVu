@@ -44,10 +44,20 @@
         </div>
 
         <!-- Flower Sales Chart -->
-        <div class="container">
-            <div id='chart-container'>
-                <div id='chart-title'>Flower Sales by Date</div>
-                <canvas id='data-chart' chart-data="myData" chart-options="myOptions" tc-chartjs-line></canvas>
+        <div class="well">
+            <div class="container">
+                <div class='col-md-6 chart-container'>
+                    <div class='data-chart'>
+                        <div class='chart-title'>Total Inventories by Date</div>
+                        <canvas chart-data="myDataSales" chart-options="myOptions" tc-chartjs-line></canvas>
+                    </div>
+                </div>
+                <div class='col-md-6 chart-container'>
+                    <div class='data-chart'>
+                        <div class='chart-title'>Flower Sales by Date</div>
+                        <canvas chart-data="myDataInv" chart-options="myOptions" tc-chartjs-line></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 

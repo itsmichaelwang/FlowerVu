@@ -62,8 +62,12 @@
                     <td>Qty Sold</td>
                     <td>Qty Left</td>
                 </tr>
-                <tr ng-repeat="sale in salesData | orderBy:['-date', 'flower']">
-                    <td>{{sale.date | date: 'MM/dd/ yyyy'}}</td>
+                <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:['-date', 'flower'])">
+                    <td>
+                        <div ng-hide="sale.date == sortedSalesData[$index-1].date">
+                            {{sale.date | date: 'MM/dd/ yyyy'}}
+                        </div>
+                    </td>
                     <td>{{sale.flower | capitalize}}</td>
                     <td>{{sale['quantity-sold']}}</td>
                     <td>{{sale['quantity-unsold']}}</td>

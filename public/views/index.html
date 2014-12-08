@@ -68,13 +68,13 @@
         <div class="container">
             <table class="table">
                 <tr class="table-heading">
-                    <td>Date</td>
+                    <td ng-click='flipDate()' class=sortable>{{getSymbol(gridFilter[0])}} Date</td>
                     <td>Product</td>
                     <td>Total Qty</td>
                     <td>Qty Sold</td>
                     <td>Qty Left</td>
                 </tr>
-                <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:['-date', '-flower'])">
+                <tr ng-repeat="sale in sortedSalesData = (salesData | orderBy:gridFilter)">
                     <td>
                         <!-- Don't display dates duplicately -->
                         <div ng-hide="sale.date == sortedSalesData[$index-1].date">

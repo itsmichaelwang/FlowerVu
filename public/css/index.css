@@ -18,6 +18,10 @@
 	font-weight: bold;
 }
 
+.sortable:hover {
+	background: #d3d3d3;
+}
+
 /* ChartJS Legend Formatting */
 .tc-chart-js-legend {
   list-style-type: none;
